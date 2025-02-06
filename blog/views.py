@@ -3,6 +3,8 @@ from django.views.generic import View, ListView, DetailView, CreateView, UpdateV
 from django.urls import reverse_lazy
 
 from .models import BlogPost
+from .templates.blog.forms import BlogPostForm
+
 
 class Home(View):
     def get(self, request, *args, **kwargs):
@@ -29,13 +31,13 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     model = BlogPost
-    fields = ['title', 'content', 'preview_image', 'is_published']
+    form_class = BlogPostForm
     template_name = 'blog/post_form.html'
     success_url = reverse_lazy('blog:blog')
 
 class PostUpdateView(UpdateView):
     model = BlogPost
-    fields = ['title', 'content', 'preview_image', 'is_published']
+    form_class = BlogPostForm
     template_name = 'blog/post_form.html'
     success_url = reverse_lazy('blog:blog')
 
