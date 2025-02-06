@@ -16,13 +16,17 @@ class BlogPost(models.Model):
     preview_image = models.ImageField(
         upload_to='blog_previews/',
         blank=True,
-        null=True)
+        null=True,
+        verbose_name="Предварительное изображение",
+    )
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Дата создания",
         help_text="Дата создания поста",
     )
-    is_published = models.BooleanField(default=False)
+    is_published = models.BooleanField(
+        default=True,
+        verbose_name="Опубликовано",)
     views_count = models.PositiveIntegerField(default=0)
     updated_at = models.DateTimeField(
         auto_now=True,
